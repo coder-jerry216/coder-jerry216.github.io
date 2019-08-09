@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-08T06:21:46.595Z</updated>
+  <updated>2019-08-09T13:00:02.110Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,40 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>leetcode-19——删除链表的倒数第N个节点</title>
+    <link href="http://yoursite.com//blog/2019/08/09/leetcode-19/"/>
+    <id>http://yoursite.com//blog/2019/08/09/leetcode-19/</id>
+    <published>2019-08-09T12:19:24.000Z</published>
+    <updated>2019-08-09T13:00:02.110Z</updated>
+    
+    <content type="html"><![CDATA[<p>大家好！这是小白的第一篇博客。刚好，今天在leetcode上刷到一道算法题：<a href="https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/" target="_blank" rel="noopener">删除链表的倒数第N个节点</a><br>索性就写下自己的解题思路，以防后面忘记。</p><h2 id="1-自身解答"><a href="#1-自身解答" class="headerlink" title="1.自身解答"></a>1.自身解答</h2><p>可能思路比较复杂，跟网上大神的解答完全不能比，但也还是解出来了。（￣︶￣）</p><pre><code>    //定义ListNode类    public class ListNode {    int val;    ListNode next;    ListNode(int x) { val = x; }}class Solution{    public ListNode removeNthFromEnd(ListNode head, int n) {        //被删除节点是尾节点        if(n==1){            //删除尾节点            //1.链表仅有一个节点            if(head.next==null)                return head.next;           //2.链表有多个节点，遍历链表，使指针指向倒数第二个节点            ListNode p = head,p1=null;            while(p.next!=null){                p1 = p;                p = p.next;            }            p1.next = null;            return head;        }        //定位被删除节点 p        ListNode p = head;        while(p.next!=null){            ListNode pp = p;            for(int i = 1;i&lt;n;i++){                pp = pp.next;            }            if(pp.next==null)                break;            p = p.next;        }        //p为头节点        if(p == head)            return head.next;        //p为中间节点        p.val = p.next.val;        p.next = p.next.next;        return head;    }}</code></pre><h2 id="2-官方题解之双指针"><a href="#2-官方题解之双指针" class="headerlink" title="2.官方题解之双指针"></a>2.官方题解之双指针</h2><p>看了一遍，感觉牛哦，精简又高效😮，根据自己的理解给加上了注释😋</p><pre><code>    class Solution {    public ListNode removeNthFromEnd(ListNode head, int n) {        //双指针遍历，保持两指针间距为n，        //当快指针遍历到链表尾节点时，慢指针刚好指向被删除节点的前驱节点        //创建一个假节点指向head，为了方便操作目标节点        //PS：这样可以不考虑被删除节点为头节点的情况        ListNode dummy = new ListNode(0);        dummy.next = head;        ListNode first = dummy;        ListNode second = dummy;        //使快、慢指针间距为n        for(int i=1;i&lt;=n;i++)            first = first.next;        //遍历链表，使快指针指向尾节点        while(first.next!=null){            first = first.next;            second = second.next;        }        //删除目的节点        second.next = second.next.next;        return dummy.next;    }}</code></pre><p>ps: 加油！争取早日拿到offer！</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;大家好！这是小白的第一篇博客。刚好，今天在leetcode上刷到一道算法题：&lt;a href=&quot;https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/&quot; target=&quot;_blank&quot; rel=&quot;n
+      
+    
+    </summary>
+    
+      <category term="编程" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2019/08/07/hello-world/"/>
-    <id>http://yoursite.com/2019/08/07/hello-world/</id>
+    <link href="http://yoursite.com//blog/2019/08/07/hello-world/"/>
+    <id>http://yoursite.com//blog/2019/08/07/hello-world/</id>
     <published>2019-08-07T11:02:12.856Z</published>
-    <updated>2019-08-08T06:21:46.595Z</updated>
+    <updated>2019-08-09T12:59:58.313Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><p>GitHub + hexo + next主题的个人博客框架终于搭好了，折腾自己大半天，幸亏CSDN、简书等社区上有前辈们总结的经验，帮忙排了不少坑（十分感谢），不然脑子真要waht了。<br>在这里给大家推荐一个<a href="https://blog.csdn.net/sinat_37781304/article/details/82729029" target="_blank" rel="noopener">hexo史上最全搭建教程</a></p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
     

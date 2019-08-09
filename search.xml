@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode-19——删除链表的倒数第N个节点]]></title>
+    <url>%2F%2Fblog%2F2019%2F08%2F09%2Fleetcode-19%2F</url>
+    <content type="text"><![CDATA[大家好！这是小白的第一篇博客。刚好，今天在leetcode上刷到一道算法题：删除链表的倒数第N个节点索性就写下自己的解题思路，以防后面忘记。 1.自身解答可能思路比较复杂，跟网上大神的解答完全不能比，但也还是解出来了。（￣︶￣） //定义ListNode类 public class ListNode { int val; ListNode next; ListNode(int x) { val = x; } } class Solution{ public ListNode removeNthFromEnd(ListNode head, int n) { //被删除节点是尾节点 if(n==1){ //删除尾节点 //1.链表仅有一个节点 if(head.next==null) return head.next; //2.链表有多个节点，遍历链表，使指针指向倒数第二个节点 ListNode p = head,p1=null; while(p.next!=null){ p1 = p; p = p.next; } p1.next = null; return head; } //定位被删除节点 p ListNode p = head; while(p.next!=null){ ListNode pp = p; for(int i = 1;i&lt;n;i++){ pp = pp.next; } if(pp.next==null) break; p = p.next; } //p为头节点 if(p == head) return head.next; //p为中间节点 p.val = p.next.val; p.next = p.next.next; return head; } }2.官方题解之双指针看了一遍，感觉牛哦，精简又高效😮，根据自己的理解给加上了注释😋 class Solution { public ListNode removeNthFromEnd(ListNode head, int n) { //双指针遍历，保持两指针间距为n， //当快指针遍历到链表尾节点时，慢指针刚好指向被删除节点的前驱节点 //创建一个假节点指向head，为了方便操作目标节点 //PS：这样可以不考虑被删除节点为头节点的情况 ListNode dummy = new ListNode(0); dummy.next = head; ListNode first = dummy; ListNode second = dummy; //使快、慢指针间距为n for(int i=1;i&lt;=n;i++) first = first.next; //遍历链表，使快指针指向尾节点 while(first.next!=null){ first = first.next; second = second.next; } //删除目的节点 second.next = second.next.next; return dummy.next; } }ps: 加油！争取早日拿到offer！]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetcode</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Hello World]]></title>
-    <url>%2F2019%2F08%2F07%2Fhello-world%2F</url>
+    <url>%2F%2Fblog%2F2019%2F08%2F07%2Fhello-world%2F</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. GitHub + hexo + next主题的个人博客框架终于搭好了，折腾自己大半天，幸亏CSDN、简书等社区上有前辈们总结的经验，帮忙排了不少坑（十分感谢），不然脑子真要waht了。在这里给大家推荐一个hexo史上最全搭建教程 Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
       <categories>
         <category>测试</category>
